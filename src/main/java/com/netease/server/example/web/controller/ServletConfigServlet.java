@@ -1,4 +1,4 @@
-package com.netease.server.example.web.controller;
+   package com.netease.server.example.web.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
