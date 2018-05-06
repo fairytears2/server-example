@@ -1,61 +1,55 @@
 package com.netease.server.example.web.controller.listener;
 
-import javax.servlet.ServletContextListener;
-import javax.servlet.ServletContextAttributeListener;
 import javax.servlet.ServletContextEvent;
-import javax.servlet.ServletContextAttributeEvent;
-import javax.servlet.http.HttpSessionListener;
+import javax.servlet.ServletContextListener;
+import javax.servlet.ServletRequestEvent;
+import javax.servlet.ServletRequestListener;
 import javax.servlet.http.HttpSessionAttributeListener;
-import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionBindingEvent;
-import org.apache.log4j.Logger;
 
-public class TestListener implements ServletContextListener,
-		ServletContextAttributeListener, HttpSessionListener,
-		HttpSessionAttributeListener {
+public class TestListener implements HttpSessionAttributeListener,
+		ServletContextListener, ServletRequestListener {
 
-	/**
-	 * Logger for this class.
-	 */
-	private static Logger logger = Logger.getLogger(TestListener.class);
-
-	public void contextInitialized(ServletContextEvent event) {
-		logger.info("contextInitialized");
+	@Override
+	public void requestDestroyed(ServletRequestEvent sre) {
+		// TODO Auto-generated method stub
+		System.out.println("listener: request destroy");
 	}
 
-	public void contextDestroyed(ServletContextEvent event) {
-		logger.info("contextDestroyed");
+	@Override
+	public void requestInitialized(ServletRequestEvent sre) {
+		// TODO Auto-generated method stub
+		System.out.println("listener: request init");
 	}
 
-	public void attributeAdded(ServletContextAttributeEvent event) {
-		logger.info("context attributeAdded");
+	@Override
+	public void contextInitialized(ServletContextEvent sce) {
+		// TODO Auto-generated method stub
+		System.out.println("listener: context init");
 	}
 
-	public void attributeRemoved(ServletContextAttributeEvent event) {
-		logger.info("context attributeRemoved");
+	@Override
+	public void contextDestroyed(ServletContextEvent sce) {
+		// TODO Auto-generated method stub
+		System.out.println("listener: context destroy");
 	}
 
-	public void attributeReplaced(ServletContextAttributeEvent event) {
-		logger.info("context attributeReplaced");
-	}
-
-	public void sessionCreated(HttpSessionEvent event) {
-		logger.info("sessionCreated");
-	}
-
-	public void sessionDestroyed(HttpSessionEvent event) {
-		logger.info("sessionDestroyed");
-	}
-
+	@Override
 	public void attributeAdded(HttpSessionBindingEvent event) {
-		logger.info("session attributeAdded");
+		// TODO Auto-generated method stub
+		System.out.println("listener: session attribute added.");
 	}
 
+	@Override
 	public void attributeRemoved(HttpSessionBindingEvent event) {
-		logger.info("session attributeRemoved");
+		// TODO Auto-generated method stub
+		System.out.println("listener: session attribute removed");
 	}
 
+	@Override
 	public void attributeReplaced(HttpSessionBindingEvent event) {
-		logger.info("session attributeReplaced");
+		// TODO Auto-generated method stub
+		System.out.println("listener: session attribute replaced");
 	}
+
 }
