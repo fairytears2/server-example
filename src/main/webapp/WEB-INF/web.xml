@@ -10,6 +10,30 @@
 		</welcome-file>
 	</welcome-file-list>
 
+	<!-- 过滤器 -->
+	<filter>
+	   <init-param>
+	   <param-name>filterParam</param-name>
+	   <param-value>111</param-value>
+	   </init-param>
+		<filter-name>TestFilter</filter-name>
+	<filter-class>com.netease.server.example.web.controller.filter.TestFilter</filter-class>
+	</filter>
+	<filter-mapping>
+	<filter-name>TestFilter</filter-name>
+	<url-pattern>/filter</url-pattern>
+	</filter-mapping>
+    
+    <!-- 并发处理 -->
+    <servlet>
+    <servlet-name>ConcurrentServlet</servlet-name>
+    <servlet-class>com.netease.server.example.web.controller.ConcurrentServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+    <servlet-name>ConcurrentServlet</servlet-name>
+    <url-pattern>/concurrent</url-pattern>
+    </servlet-mapping>
+
 	<servlet>
 		<load-on-startup>1</load-on-startup>
 		<servlet-name>TestServlet</servlet-name>
@@ -20,7 +44,6 @@
 		<url-pattern>/hello</url-pattern>
 	</servlet-mapping>
 
-
 	<servlet>
 		<load-on-startup>2</load-on-startup>
 		<servlet-name>TestHelloServlet</servlet-name>
@@ -30,6 +53,7 @@
 	<servlet-mapping>
 		<servlet-name>TestHelloServlet</servlet-name>
 		<url-pattern>/hello/*</url-pattern>
+
 	</servlet-mapping>
 
 	<servlet>
@@ -59,7 +83,7 @@
 
 	<servlet-mapping>
 		<servlet-name>DefaultServlet</servlet-name>
-		<url-pattern>/</url-pattern>
+		<url-pattern>/abc/kk</url-pattern>
 	</servlet-mapping>
 
 	<!-- get/post method servlet -->
@@ -108,6 +132,27 @@
 		<url-pattern>/servlet/ServletContext</url-pattern>
 	</servlet-mapping>
 
+<!-- Cookie & Session -->
+	<servlet>
+		<servlet-name>user</servlet-name>
+		<servlet-class>com.netease.server.example.web.controller.UserServlet</servlet-class>
+		<init-param>
+			<param-name>tomcat</param-name>
+			<param-value>test for init-param</param-value>
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>user</servlet-name>
+		<url-pattern>/user/specify</url-pattern>
+	</servlet-mapping>
+
+	<session-config>
+		<session-timeout>5</session-timeout>
+	</session-config>
+
+
+
 	<!-- error page config -->
 	<error-page>
 		<error-code>404</error-code>
@@ -118,4 +163,39 @@
 		<extension>java</extension>
 		<mime-type>text/plain</mime-type>
 	</mime-mapping>
+	<!-- 转发 -->
+	<servlet>
+	<servlet-name>ServletForward</servlet-name>
+	<servlet-class>com.netease.server.example.web.controller.ServletForward</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	<servlet-name>ServletForward</servlet-name>
+	<url-pattern>/forward</url-pattern>
+	</servlet-mapping>
+	<servlet>
+	<servlet-name>ServletForwardExample</servlet-name>
+	<servlet-class>com.netease.server.example.web.controller.ServletForwardExample</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	<servlet-name>ServletForwardExample</servlet-name>
+	<url-pattern>/forwardexample</url-pattern>
+	</servlet-mapping>
+	<!-- 重定向 -->
+		<servlet>
+	<servlet-name>ServletRedirect</servlet-name>
+	<servlet-class>com.netease.server.example.web.controller.ServletRedirect</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	<servlet-name>ServletRedirect</servlet-name>
+	<url-pattern>/redirect</url-pattern>
+	</servlet-mapping>
+	<servlet>
+	<servlet-name>ServletRedirectExample</servlet-name>
+	<servlet-class>com.netease.server.example.web.controller.ServletRedirectExample</servlet-class>
+	</servlet>
+	<servlet-mapping>
+	<servlet-name>ServletRedirectExample</servlet-name>
+	<url-pattern>/redirectexample</url-pattern>
+	</servlet-mapping>
+
 </web-app>
